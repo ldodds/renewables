@@ -1,0 +1,16 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+#@prefix renew: <http://renewables.dataincubator.org/schema/generators/> .
+@prefix renew: <http://data.kasabi.com/dataset/renewables/schema/generators/> .
+
+<http://data.kasabi.com/dataset/renewables/category>
+	a skos:ConceptScheme;
+	dcterms:title "Renewable Technology Category";
+	dcterms:description "Technology categories assigned by the Renewable Energy Foundation". 
+	

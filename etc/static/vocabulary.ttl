@@ -1,0 +1,102 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+#@prefix renew: <http://renewables.dataincubator.org/schema/generators/> .
+
+@prefix renew: <http://data.kasabi.com/dataset/renewables/schema/generators/> .
+
+renew:Generator a rdfs:Class;
+  rdfs:label "Generator";
+  rdfs:comment "A renewable energy generator";
+  rdfs:isDefinedBy <http://data.kasabi.com/dataset/renewables/schema/generators>.
+
+renew:Installation a rdfs:Class;
+  rdfs:label "Installation";
+  rdfs:comment "An installation of a renewable power generator";
+  rdfs:isDefinedBy <http://data.kasabi.com/dataset/renewables/schema/generators>.
+
+renew:WindTurbineInstallation a rdfs:Class;
+  rdfs:label "WindTurbineInstallation";
+  rdfs:subClassOf renew:Installation;
+  rdfs:comment "An installation of wind turbines at a particular location";
+  rdfs:isDefinedBy <http://data.kasabi.com/dataset/renewables/schema/generators>.
+    
+renew:installedCapacity a rdf:Property;
+  rdfs:label "installed capacity";
+  rdfs:comment "The total installed generating capacity of a station in kilowatts (kW)";  
+  rdfs:isDefinedBy <http://data.kasabi.com/dataset/renewables/schema/generators>.
+  
+renew:accreditationDate a rdf:Property;
+  rdfs:label "accreditation date";
+  rdfs:comment "The date at which the generator was accorded accredited status with Ofgem; this is usually the date of first generation.";  
+  rdfs:isDefinedBy <http://data.kasabi.com/dataset/renewables/schema/generators>.
+    
+renew:rollingLoadFactor a rdf:Property;
+  rdfs:label "rolling load factor";
+  rdfs:isDefinedBy <http://data.kasabi.com/dataset/renewables/schema/generators>.
+
+renew:latestAnnualLoadFactor a rdf:Property;
+  rdfs:label "latest annual load factor";
+  rdfs:isDefinedBy <http://data.kasabi.com/dataset/renewables/schema/generators>.
+
+renew:developer a rdf:Property;
+  rdfs:label "developer";
+  rdfs:comment "The company that acted as the developer of the project, responsible for proposing the concept and carrying it through the planning system.";  
+  rdfs:isDefinedBy <http://data.kasabi.com/dataset/renewables/schema/generators>.
+
+renew:developed a rdf:Property;
+  rdfs:label "developed";
+  rdfs:comment "A renewable energy generation site developed by an organisation";  
+  rdfs:isDefinedBy <http://data.kasabi.com/dataset/renewables/schema/generators>.
+
+renew:operator a rdf:Property;
+  rdfs:label "operator";
+  rdfs:comment "The operator for a renewable energy generation site";  
+  rdfs:isDefinedBy <http://data.kasabi.com/dataset/renewables/schema/generators>.
+
+renew:operates a rdf:Property;
+  rdfs:label "operates";
+  rdfs:comment "A renewable energy generator operated by an organisation";  
+  rdfs:isDefinedBy <http://data.kasabi.com/dataset/renewables/schema/generators>.
+
+renew:installation a rdf:Property;
+  rdfs:label "installation";
+  rdfs:comment "refers to description of generator installation at a site";  
+  rdfs:isDefinedBy <http://data.kasabi.com/dataset/renewables/schema/generators>.
+
+renew:site a rdf:Property;
+  rdfs:label "site";
+  rdfs:comment "A site of a renewable energy generator installation";  
+  rdfs:isDefinedBy <http://data.kasabi.com/dataset/renewables/schema/generators>.
+  
+renew:numberOfTurbines a rdf:Property;
+  rdfs:label "number of turbines";
+  rdfs:comment "The number of turbines installed at a particular installation";  
+  rdfs:isDefinedBy <http://data.kasabi.com/dataset/renewables/schema/generators>.  
+
+renew:hubHeight a rdf:Property;
+  rdfs:label "hub height";
+  rdfs:comment "The height of the hub on a wind turbine";  
+  rdfs:isDefinedBy <http://data.kasabi.com/dataset/renewables/schema/generators>.    
+  
+renew:bladeDiameter a rdf:Property;
+  rdfs:label "blade diameter";
+  rdfs:comment "The diameter of a blade on a wind turbine";  
+  rdfs:isDefinedBy <http://data.kasabi.com/dataset/renewables/schema/generators>.    
+
+renew:turbineCapacity a rdf:Property;
+  rdfs:label "turbine capacity";
+  rdfs:comment "Capacity of a turbine in kW";  
+  rdfs:isDefinedBy <http://data.kasabi.com/dataset/renewables/schema/generators>.    
+
+renew:category a rdf:Property;
+  rdfs:label "category";
+  rdfs:comment "Category of a generator";  
+  rdfs:isDefinedBy <http://data.kasabi.com/dataset/renewables/schema/generators>.    
+

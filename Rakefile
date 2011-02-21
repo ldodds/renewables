@@ -21,9 +21,9 @@ task :convert_locations do
  sh %{ruby bin/convert.rb #{CACHE_DIR} #{DATA_DIR} }
 end
 
-task :convert_static => [:init] do
+task :convert_static do
     Dir.glob("etc/static/*.ttl").each do |src|
-      sh %{rapper -i turtle -o ntriples #{src} >#{RDF_DIR}/#{File.basename(src, ".ttl")}.nt}
+      sh %{rapper -i turtle -o ntriples #{src} >#{DATA_DIR}/#{File.basename(src, ".ttl")}.nt}
     end
 end
 

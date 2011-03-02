@@ -22,10 +22,15 @@ task :convert_locations do
 end
 
 task :convert_static do
-    Dir.glob("etc/static/*.ttl").each do |src|
+  Dir.glob("etc/static/*.ttl").each do |src|
       sh %{rapper -i turtle -o ntriples #{src} >#{DATA_DIR}/#{File.basename(src, ".ttl")}.nt}
-    end
+  end
 end
 
-task :convert => [:download, :convert_locations, :convert_static]
+task :package do
+  sh %{gzip #{DATA_DIR}/*} 
+end
 
+task :convert => [:convert_locations, :convert_static]
+
+task :publish => [:download, :convert, :package]

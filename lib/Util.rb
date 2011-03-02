@@ -46,7 +46,7 @@ class Util
   end
   
   def Util.absolute_uri(s)
-    return "http://data.kasabi.com/dataset/renewables/#{s}"    
+    return "http://data.kasabi.com/dataset/renewable-energy-generators/#{s}"    
   end
   
   def Util.postcode(code)

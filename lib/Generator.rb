@@ -25,18 +25,27 @@ class Generator
     address = false
     @doc.search("table[1] tr").each do |row|
       field = row.at("td").inner_text.gsub(":", "")
-      value = Util.clean_ws( row.search("td")[1].inner_text.gsub(/ $/, "") )
-      if field == "" && address && value != ""
-        @fields["Address"] << value
-      end
+      #value = Util.clean_ws( row.search("td")[1].inner_text.gsub(/ $/, "") )
+      #if field == "" && address && value != ""
+      #  @fields["Address"] << value
+      #end
+      
+      #if field == "Address"
+      #  address = true
+      #  @fields["Address"] = [ value ]
+      #else
+      #  @fields[ field ] = value  
+      #end
       
       if field == "Address"
-        address = true
-        @fields["Address"] = [ value ]
+        value = Util.clean_ws( row.search("td")[1].inner_html.gsub("<br />", ",") )
+        value = value.gsub(/, $/, "")
       else
-        @fields[ field ] = value  
+        value = Util.clean_ws( row.search("td")[1].inner_text.gsub(/ $/, "") )
       end
-           
+          
+      @fields[ field ] = value
+               
     end
   
 #    puts @fields.inspect
@@ -81,12 +90,12 @@ class Generator
       
       add_statement( @vcard, RDF.type, Vocabulary::VCARD.VCard )
       
-      if @fields["Address"][0] != ""
-        add_statement( @vcard, Vocabulary::VCARD.fn, RDF::Literal.new( @fields["Address"][0] ) )
+      if @fields["Address"] != ""
+        add_statement( @vcard, Vocabulary::VCARD.fn, RDF::Literal.new( @fields["Address"] ) )
       else 
         add_statement( @vcard, Vocabulary::VCARD.fn, @name )
       end
-         
+      
       if @lat != nil && @long != nil 
         #add lat/long directly to the site
         add_property( Vocabulary::GEO.lat, RDF::Literal.new( @lat ) )
@@ -110,8 +119,8 @@ class Generator
         
       end
       
-      if @fields["Address"][0] != ""       
-        add_statement( @vcard, Vocabulary::VCARD.label, RDF::Literal.new( @fields["Address"].join("\n") ) )
+      if @fields["Address"] != ""       
+        add_statement( @vcard, Vocabulary::VCARD.label, RDF::Literal.new( @fields["Address"] ) )
       end
         
       if ( @fields["Country"] && @address )
@@ -201,6 +210,7 @@ class Generator
       add_statement( developer_uri, Vocabulary::ORG.hasSite, @uri )
     end
 
+    #FIXME: producing empty values
     #Fields for Wind stations
     if @fields["Number of Wind Turbines"]
       turbines = RDF::URI.new( Util.absolute_uri( "generator/#{@id}/turbines") )

@@ -38,8 +38,13 @@ class Generator
       #end
       
       if field == "Address"
-        value = Util.clean_ws( row.search("td")[1].inner_html.gsub("<br />", ",") )
-        value = value.gsub(/, $/, "")
+        address = Util.clean_ws( row.search("td")[1].inner_text.gsub(/ $/, "") )
+        if address != nil && address != ""
+          value = Util.clean_ws( row.search("td")[1].inner_html.gsub("<br />", ",") )
+          value = value.gsub(/, $/, "")
+        else
+          value = nil
+        end
       else
         value = Util.clean_ws( row.search("td")[1].inner_text.gsub(/ $/, "") )
       end
@@ -90,7 +95,7 @@ class Generator
       
       add_statement( @vcard, RDF.type, Vocabulary::VCARD.VCard )
       
-      if @fields["Address"] != ""
+      if @fields["Address"] != nil && @fields["Address"] != "" 
         add_statement( @vcard, Vocabulary::VCARD.fn, RDF::Literal.new( @fields["Address"] ) )
       else 
         add_statement( @vcard, Vocabulary::VCARD.fn, @name )
@@ -119,7 +124,7 @@ class Generator
         
       end
       
-      if @fields["Address"] != ""       
+      if @fields["Address"]       
         add_statement( @vcard, Vocabulary::VCARD.label, RDF::Literal.new( @fields["Address"] ) )
       end
         
@@ -210,9 +215,8 @@ class Generator
       add_statement( developer_uri, Vocabulary::ORG.hasSite, @uri )
     end
 
-    #FIXME: producing empty values
     #Fields for Wind stations
-    if @fields["Number of Wind Turbines"]
+    if @fields["Number of Wind Turbines"] != ""
       turbines = RDF::URI.new( Util.absolute_uri( "generator/#{@id}/turbines") )
       add_property( Vocabulary::RENEW.installation, turbines )
       add_statement( turbines, RDF.type, Vocabulary::RENEW.WindTurbineInstallation)

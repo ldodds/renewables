@@ -34,13 +34,13 @@ The file names are derived from the OFGEM identifier for the ROC installation.
 
 To convert the files into RDF run:
 
-	rake scrape
+	rake convert
 	
 To run both the caching and conversion steps run:
 
-	rake convert
+	rake publish
 	
-It is recommended that when iterating over changes to the data model, that you run only the "scrape" 
+It is recommended that when iterating over changes to the data model, that you run only the "convert" 
 stage repeatedly. This avoids unnecessary traffic to the REF website. 
 
 The converted output is stored in data/nt as a single NTriples file.

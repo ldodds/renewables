@@ -2,7 +2,6 @@ require 'rubygems'
 require 'rake'
 require 'rake/clean'
 require 'rake/testtask'
-require 'pho'
 
 BASE_DIR="data"
 
